@@ -1,4 +1,4 @@
-Capistrano Deployment Scripts for Palamedes
+Capistrano Deployment Scripts
 ===============
 Includes Capistrano Recipes for:
 
