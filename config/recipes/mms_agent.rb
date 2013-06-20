@@ -6,12 +6,13 @@ namespace :mms_agent do
     run "#{sudo} easy_install pymongo"
     run "#{sudo} wget https://mms.10gen.com/settings/10gen-mms-agent.tar.gz"
     run "#{sudo} tar xvf 10gen-mms-agent.tar.gz"
+    start
   end
   after "deploy:install", "mms_agent:install"
 
   desc "Setup mms_agent configuration for this application"
   task :setup, roles: :db do
-    template "mms_agent.settings.py.erb", "/tmp/settings.py"
+    template "mms/settings.py.erb", "/tmp/settings.py"
     run "#{sudo} mv /tmp/settings.py /home/#{user}/mms-agent/settings.py"
     restart
   end

@@ -8,7 +8,7 @@ namespace :munin_node do
 
   desc "Setup munin-node configuration for this application"
   task :setup, roles: :db do
-    template "munin-node.conf.erb", "/tmp/munin-node.conf"
+    template "munin-node/munin-node.conf.erb", "/tmp/munin-node.conf"
     run "#{sudo} mv /tmp/munin-node.conf /etc/munin/munin-node.conf"
     restart
   end
