@@ -25,8 +25,9 @@ load "config/recipes/mongodb"
 load "config/recipes/mms_agent"
 load "config/recipes/nginx"
 load "config/recipes/jruby"
+load "config/recipes/puma"
 
-server "ec2-54-224-98-104.compute-1.amazonaws.com", :db, :web, :app
+server "ec2-54-234-206-39.compute-1.amazonaws.com", :db, :web, :app
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"

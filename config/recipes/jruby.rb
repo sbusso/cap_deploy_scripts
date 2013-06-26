@@ -1,4 +1,4 @@
-set :jruby_path, '"PATH=$PATH:/home/ubuntu/jruby-#{jruby_version}/bin"'
+set :jruby_path, "\"PATH=$PATH:#{jruby_bin_path}\""
 
 namespace :jruby do
 
@@ -8,8 +8,9 @@ namespace :jruby do
     run "wget http://jruby.org.s3.amazonaws.com/downloads/#{jruby_version}/jruby-bin-#{jruby_version}.tar.gz"
     run "tar xvf jruby-bin-#{jruby_version}.tar.gz"
     run "sh -c 'echo export #{jruby_path} >> /home/ubuntu/.profile'"
-    run "#{jruby_bin_path}/jruby -S gem install bundler --path /home/#{user}/apps/#{application}/shared/bundle"
-    run "#{jruby_bin_path}/jruby -S gem install rake --path /home/#{user}/apps/#{application}/shared/bundle"
+    run "#{sudo} ln -s #{jruby_bin_path}/jruby /usr/local/bin/jruby"
+    run "#{jruby_bin_path}/jruby -S gem install bundler"
+    run "#{jruby_bin_path}/jruby -S gem install rake"
   end
   after "deploy:install", "jruby:install"
 
